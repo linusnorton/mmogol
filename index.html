@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>MMOGOL - Massivily Multiplayer Online Game of Life</title>
+    </head>
+    <body>
+        <script src="./socket.io.min.js"></script>
+        <script>
+          var socket = io.connect('http://10.161.41.0:8021');
+          socket.on('tick', function (data) {
+            console.log(data);
+          });
+        </script>
+    </body>
+</html>
