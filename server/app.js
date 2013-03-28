@@ -1,8 +1,8 @@
 
 var io = require('socket.io').listen(8021),
     Game = require('./game'),
-    game = new Game(40, 30),
-    tickLength = 200;
+    game = new Game(50, 40),
+    tickLength = 1000;
 
 game.randomize();
 setInterval(tick, tickLength);

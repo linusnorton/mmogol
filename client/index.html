@@ -1,14 +1,28 @@
 <html>
     <head>
         <title>MMOGOL - Massivily Multiplayer Online Game of Life</title>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+
+            .alive, .dead  {
+                width: 20px;
+                height: 15px;
+                border: 1px solid #000;
+            }
+
+            .alive {
+                background-color: red;
+            }
+        </style>
     </head>
     <body>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="./socket.io.min.js"></script>
-        <script>
-          var socket = io.connect('http://localhost:8021');
-          socket.on('tick', function (data) {
-            console.log(data);
-          });
-        </script>
+        <script src="./underscore.min.js"></script>
+        <script src="./main.js"></script>
+
+        <table data-role="gameContainer" />
     </body>
 </html>

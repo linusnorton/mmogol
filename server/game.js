@@ -2,18 +2,18 @@ function Game(width, height) {
     var grid = [];
 
     function randomize () {
-        for (var i = 0; i < width; i++) {
-            grid[i] = [];
+        for (var j = 0; j < height; j++) {
+            grid[j] = [];
 
-            for (var j = 0; j < height; j++) {
-                grid[i][j] = Math.random() > 0.7 ;
+            for (var i = 0; i < width; i++) {
+                grid[j][i] = Math.random() > 0.6;
             }
         }
     }
 
     function update () {
-        for (var i = 0; i < width; i++) {
-            for (var j = 0; j < height; j++) {
+        for (var j = 0; j < height; j++) {
+            for (var i = 0; i < width; i++) {
                 updateCell(i, j);
             }
         }
@@ -46,15 +46,15 @@ function Game(width, height) {
     }
 
     function isAlive(i, j) {
-        return grid[getX(i)][getY(j)];
+        return grid[getY(j)][getX(i)];
     }
 
     function kill(i, j) {
-        grid[getX(i)][getY(j)] = false;
+        grid[getY(j)][getX(i)] = false;
     }
 
     function spawn(i, j) {
-        grid[getX(i)][getY(j)] = true;
+        grid[getY(j)][getX(i)] = true;
     }
 
     function getX(i) {
