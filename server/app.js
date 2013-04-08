@@ -1,5 +1,6 @@
 
-var io = require('socket.io').listen(8021),
+var webServer = require('./web-server')
+    io = require('socket.io').listen(webServer),
     Game = require('./game'),
     game = new Game(50, 40),
     tickLength = 1000;

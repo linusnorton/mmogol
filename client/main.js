@@ -2,7 +2,7 @@
 $(function() {
     'use strict';
 
-    var socket = io.connect('http://localhost:8021');
+    var socket = io.connect('http://localhost:8012');
 
     function buildCell(cell) {
         var cssClass = cell ? 'alive' : 'dead';
