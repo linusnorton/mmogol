@@ -1,17 +1,16 @@
 
-var webServer = require('./web-server')
-    io = require('socket.io').listen(webServer),
+var WebServer = require('./web-server'),
     Game = require('./game'),
-    game = new Game(50, 40),
-    tickLength = 1000;
+	config = require('./config'),
+	webServer = new WebServer(config.port, config.clientDir),
+    io = require('socket.io').listen(webServer.app),
+    game = new Game(io, config.width, config.height, config.tickLength);
+
+io.sockets.on('connection', function (socket) {
+	socket.on('toggle', function (data) {
+	    game.toggle(data.i, data.j);
+	});
+});
 
 game.randomize();
-setInterval(tick, tickLength);
-
-/**
- * Update the game and broadcast the grid
- */
-function tick () {
-    game.update(game);
-    io.sockets.emit('tick', game.grid);
-}
+game.start();
