@@ -4,4 +4,4 @@ module.exports = {
 	tickLength: 150, 
 	width: 50,
 	height: 40
-}
+};

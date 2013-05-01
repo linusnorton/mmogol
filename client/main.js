@@ -25,8 +25,8 @@ $(function() {
             $(event.target).toggleClass('alive');
 
             socket.emit('toggle', { 
-                i: event.target.dataset['i'], 
-                j: event.target.dataset['j']
+                i: event.target.dataset.i, 
+                j: event.target.dataset.j
             });            
         }
     }
@@ -34,6 +34,6 @@ $(function() {
     socket.on('tick', tick);
     $table.on('mousedown', function () { mousedown = true; });
     $table.on('mouseup', function () { mousedown = false; });
-    $table.on('mouseover', 'td', toggle)
+    $table.on('mouseover', 'td', toggle);
 });
 
