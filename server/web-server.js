@@ -25,7 +25,6 @@ function WebServer (port, clientDir) {
      * @param  {Response} res
      */
     function handler (req, res) {
-        console.log("HERE");
         req.url = req.url === '/' ? '/index.html' : req.url;
 
         fs.readFile(clientDir + req.url, u.partial(serveFile, req, res));
