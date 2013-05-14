@@ -10,4 +10,4 @@ npm install
 supervisor ./server/app.js
 ```
 
-Then open up localhost:8012
+Then open up your browser and go to http://localhost:8012

@@ -2,15 +2,14 @@ var events = require('events'),
     util = require('util');
 
 /**
- * Game handles the rules of the Game of Life. It maintains a grid that is updated every 
+ * Game handles the rules of the Game of Life. It maintains a grid that is updated every
  * ticketLength.
- * 
- * @param {Socket.IO} io
+ *
  * @param {Number} width
  * @param {Number} height
  * @param {Number} tickLength
  */
-function Game (io, width, height, tickLength) {
+function Game (width, height, tickLength) {
     var grid = [];
 
     /**
@@ -21,7 +20,7 @@ function Game (io, width, height, tickLength) {
     }
 
     /**
-     * Create a random grid 
+     * Create a random grid
      */
     function randomize () {
         for (var j = 0; j < height; j++) {
@@ -45,7 +44,7 @@ function Game (io, width, height, tickLength) {
      */
     function tick () {
         update();
-        
+
         this.emit('update', grid);
     }
 
@@ -68,7 +67,7 @@ function Game (io, width, height, tickLength) {
 
     /**
      * Return a true of the given cell if alive after the current turn, or false if it is dead.
-     * 
+     *
      * @param  {Number} i
      * @param  {Number} j
      * @return {Boolean}
@@ -88,7 +87,7 @@ function Game (io, width, height, tickLength) {
 
     /**
      * Get the number of alive neighbours.
-     * 
+     *
      * @param  {Number} i
      * @param  {Number} j
      * @return {Number}
@@ -112,7 +111,7 @@ function Game (io, width, height, tickLength) {
 
     /**
      * Toggle the given cells state.
-     * 
+     *
      * @param  {Number} i
      * @param  {Number} j
      */
@@ -122,7 +121,7 @@ function Game (io, width, height, tickLength) {
 
     /**
      * Return true if the cell is alive or false if it is dead.
-     * 
+     *
      * @param  {Number}  i
      * @param  {number}  j
      */
@@ -132,7 +131,7 @@ function Game (io, width, height, tickLength) {
 
     /**
      * Perform some modulus to get the array index for the given cell
-     * 
+     *
      * @param  {Number} i
      */
     function getX (i) {
@@ -141,14 +140,14 @@ function Game (io, width, height, tickLength) {
 
     /**
      * Perform some modulus to get the array index for the given cell
-     * 
+     *
      * @param  {Number} i
      */
     function getY (j) {
         return (height + j) % height;
     }
 
-    // Set up the public properties    
+    // Set up the public properties
     this.randomize = randomize;
     this.start = start;
     this.toggle = toggle;

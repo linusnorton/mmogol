@@ -1,20 +1,14 @@
 
 var WebServer = require('./web-server'),
     Game = require('./game'),
+    ClientHandler = require('./client-handler'),
     config = require('./config'),
     webServer = new WebServer(config.port, config.clientDir),
-    io = require('socket.io').listen(webServer.app),
-    game = new Game(io, config.width, config.height, config.tickLength);
-
-io.sockets.on('connection', function (socket) {
-    socket.on('toggle', function (data) {
-        game.toggle(data.i, data.j);
-    });
-});
-
-game.on('update', function (grid) {
-    io.sockets.emit('tick', grid);
-});
+    game = new Game(config.width, config.height, config.tickLength),
+    clientHandler = new ClientHandler(webServer.app, game);
 
 game.randomize();
 game.start();
+
+webServer.start();
+clientHandler.start();

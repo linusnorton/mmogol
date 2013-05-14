@@ -4,7 +4,7 @@ var http = require('http'),
 
 /**
  * Minimal web server to serve the static files
- * 
+ *
  * @param {Number} port
  * @param {String} clientDir
  */
@@ -14,13 +14,13 @@ function WebServer (port, clientDir) {
     /**
      * Start listening for requests
      */
-    function init () {
+    function start () {
         app.listen(port);
     }
 
     /**
      * Handle a request
-     * 
+     *
      * @param  {Request} req
      * @param  {Response} res
      */
@@ -32,7 +32,7 @@ function WebServer (port, clientDir) {
 
     /**
      * Serve a file
-     * 
+     *
      * @param  {Request} req
      * @param  {Response} res
      * @param  {Object} err
@@ -51,8 +51,7 @@ function WebServer (port, clientDir) {
     }
 
     this.app = app;
-
-    init();
+    this.start = start;
 }
 
 module.exports = WebServer;
