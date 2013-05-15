@@ -4,7 +4,8 @@ $(function() {
 
     var socket = io.connect(),
         mousedown = false,
-        $table = $('[data-role=gameContainer]');
+        $table = $('[data-role=gameContainer]'),
+        $counter = $('[data-role=numClients]');
 
     function buildCell (j, cell, i) {
         var cssClass = cell ? 'alive' : '';
@@ -17,17 +18,18 @@ $(function() {
     }
 
     function tick (data) {
-        $table.html(_.map(data, buildRow).join());
+        $table.html(_.map(data.game, buildRow).join());
+        $counter.html(data.numClients);
     }
 
     function toggle (event) {
         if (mousedown) {
             $(event.target).toggleClass('alive');
 
-            socket.emit('toggle', { 
-                i: event.target.dataset.i, 
+            socket.emit('toggle', {
+                i: event.target.dataset.i,
                 j: event.target.dataset.j
-            });            
+            });
         }
     }
 

@@ -17,6 +17,7 @@ function ClientHandler(app, game) {
         sockets = io.listen(app).sockets;
 
         sockets.on('connection', addClient);
+        sockets.on('disconnect', removeClient);
         game.on('update', updateClients);
     }
 
@@ -29,6 +30,13 @@ function ClientHandler(app, game) {
         socket.on('toggle', onClientToggle);
 
         numClients += 1;
+    }
+
+    /**
+     * Decrement the client count
+     */
+    function removeClient () {
+        numClients -= 1;
     }
 
     /**
@@ -46,7 +54,10 @@ function ClientHandler(app, game) {
      * @param  {Object} grid
      */
     function updateClients (grid) {
-        sockets.emit('tick', grid);
+        sockets.emit('tick', {
+            game: grid,
+            numClients: numClients
+        });
     }
 
     this.start = start;
