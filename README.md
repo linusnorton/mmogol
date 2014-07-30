@@ -7,6 +7,7 @@ Proof of concept using node.js / socket.io
 
 ```bash
 npm install
+npm install -g supervisor #may need sudo
 supervisor ./server/app.js
 ```
 
